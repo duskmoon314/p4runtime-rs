@@ -14,7 +14,7 @@ include = ["src/**/*", "Cargo.toml", "README.md", "LICENSE"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [workspace]
-members = ["xtask"]
+members = ["examples/*", "p4runtime-client", "xtask"]
 
 [dependencies]
 prost = "0.12.4"
