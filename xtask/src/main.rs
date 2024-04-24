@@ -16,12 +16,15 @@ fn main() -> anyhow::Result<()> {
         .out_dir(workspace_root.join("tmp"))
         .compile(
             &[
-                "p4runtime/proto/p4/v1/p4runtime.proto",
-                "p4runtime/proto/p4/v1/p4data.proto",
-                "p4runtime/proto/p4/config/v1/p4info.proto",
-                "p4runtime/proto/p4/config/v1/p4types.proto",
+                workspace_root.join("proto/p4runtime/proto/p4/v1/p4runtime.proto"),
+                workspace_root.join("proto/p4runtime/proto/p4/v1/p4data.proto"),
+                workspace_root.join("proto/p4runtime/proto/p4/config/v1/p4info.proto"),
+                workspace_root.join("proto/p4runtime/proto/p4/config/v1/p4types.proto"),
             ],
-            &["./p4runtime/proto", "./googleapis/"],
+            &[
+                workspace_root.join("proto/p4runtime/proto"),
+                workspace_root.join("proto/googleapis"),
+            ],
         )?;
 
     // Read in the generated code
@@ -31,7 +34,9 @@ fn main() -> anyhow::Result<()> {
 
     // Construct the whole lib contents
     let lib_contents = format!(
-        "pub mod google {{
+        "#![allow(unused_variables)]
+        
+        pub mod google {{
             pub mod rpc {{
                 {google_rpc_contents}
             }}
@@ -46,7 +51,10 @@ fn main() -> anyhow::Result<()> {
                     {p4_config_v1_contents}
                 }}
             }}
-        }}"
+        }}
+        
+        pub mod utils;
+        "
     );
 
     // Use form to create the directory structure
@@ -55,8 +63,11 @@ fn main() -> anyhow::Result<()> {
     // Format the code
     Command::new("cargo")
         .arg("fmt")
-        .current_dir(workspace_root)
+        .current_dir(&workspace_root)
         .status()?;
+
+    // Clean up the tmp directory
+    fs::remove_dir_all(workspace_root.join("tmp"))?;
 
     Ok(())
 }
