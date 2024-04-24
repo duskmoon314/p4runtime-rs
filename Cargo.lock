@@ -198,9 +198,7 @@ dependencies = [
  "anyhow",
  "p4runtime",
  "p4runtime-client",
- "prost",
  "tokio",
- "tokio-stream",
 ]
 
 [[package]]
