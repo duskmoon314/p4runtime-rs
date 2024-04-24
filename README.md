@@ -19,6 +19,7 @@ This repo contains the generated Rust code for the P4Runtime protobuf definition
 ### Repo Structure
 
 - `src/`: The generated Rust code.
+- `src/utils/`: Hand-written utility functions and traits.
 - `xtask/`: Rust code for generating this crate.
 
 ### Generate Rust Code
