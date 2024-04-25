@@ -935,6 +935,7 @@ version = "0.1.0+1.4.0.rc.5"
 dependencies = [
  "prost",
  "prost-types",
+ "serde",
  "tonic",
 ]
 

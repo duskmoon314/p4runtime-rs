@@ -10,7 +10,7 @@ pub enum Update {
     #[prost(message, tag = "4")]
     IdleTimeoutNotification(super::IdleTimeoutNotification),
     #[prost(message, tag = "5")]
-    Other(::prost_types::Any),
+    Other(super::super::super::google::protobuf::Any),
     #[doc = " Used by the server to asynchronously report errors which occur when"]
     #[doc = " processing StreamMessageRequest messages."]
     #[prost(message, tag = "6")]

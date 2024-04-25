@@ -1,4 +1,5 @@
 #[doc = " Corresponds to 'type' constructor parameter for Meter / DirectMeter in PSA"]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, :: prost :: Enumeration)]
 #[repr(i32)]
 pub enum Unit {

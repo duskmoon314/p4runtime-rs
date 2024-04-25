@@ -5,6 +5,7 @@
 #[doc = " message and refer to the types by name in the P4DataTypeSpec message. We also"]
 #[doc = " support annotations for these type specs which can be useful, e.g. to"]
 #[doc = " identify well-known headers (such as ipv4)."]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct P4TypeInfo {
@@ -26,6 +27,7 @@ pub struct P4TypeInfo {
     pub new_types: ::std::collections::HashMap<::prost::alloc::string::String, P4NewTypeSpec>,
 }
 #[doc = " Describes a P4_16 type."]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct P4DataTypeSpec {
@@ -37,6 +39,7 @@ pub struct P4DataTypeSpec {
 }
 #[doc = " Nested message and enum types in `P4DataTypeSpec`."]
 pub mod p4_data_type_spec;
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct P4NamedType {
@@ -45,12 +48,15 @@ pub struct P4NamedType {
 }
 #[doc = " Empty message as no type information needed, just used as a placeholder in"]
 #[doc = " the oneof to identify boolean types."]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct P4BoolType {}
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct P4ErrorType {}
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct P4BitstringLikeTypeSpec {
@@ -69,18 +75,21 @@ pub struct P4BitstringLikeTypeSpec {
 }
 #[doc = " Nested message and enum types in `P4BitstringLikeTypeSpec`."]
 pub mod p4_bitstring_like_type_spec;
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct P4BitTypeSpec {
     #[prost(int32, tag = "1")]
     pub bitwidth: i32,
 }
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct P4IntTypeSpec {
     #[prost(int32, tag = "1")]
     pub bitwidth: i32,
 }
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct P4VarbitTypeSpec {
@@ -89,12 +98,14 @@ pub struct P4VarbitTypeSpec {
 }
 #[doc = " From the P4_16 spec: \"A tuple is similar to a struct, in that it holds"]
 #[doc = " multiple values. Unlike a struct type, tuples have no named fields.\""]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct P4TupleTypeSpec {
     #[prost(message, repeated, tag = "1")]
     pub members: ::prost::alloc::vec::Vec<P4DataTypeSpec>,
 }
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct P4StructTypeSpec {
@@ -111,6 +122,7 @@ pub struct P4StructTypeSpec {
 }
 #[doc = " Nested message and enum types in `P4StructTypeSpec`."]
 pub mod p4_struct_type_spec;
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct P4HeaderTypeSpec {
@@ -127,6 +139,7 @@ pub struct P4HeaderTypeSpec {
 }
 #[doc = " Nested message and enum types in `P4HeaderTypeSpec`."]
 pub mod p4_header_type_spec;
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct P4HeaderUnionTypeSpec {
@@ -143,6 +156,7 @@ pub struct P4HeaderUnionTypeSpec {
 }
 #[doc = " Nested message and enum types in `P4HeaderUnionTypeSpec`."]
 pub mod p4_header_union_type_spec;
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct P4HeaderStackTypeSpec {
@@ -151,6 +165,7 @@ pub struct P4HeaderStackTypeSpec {
     #[prost(int32, tag = "2")]
     pub size: i32,
 }
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct P4HeaderUnionStackTypeSpec {
@@ -159,6 +174,7 @@ pub struct P4HeaderUnionStackTypeSpec {
     #[prost(int32, tag = "2")]
     pub size: i32,
 }
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct KeyValuePair {
@@ -167,12 +183,14 @@ pub struct KeyValuePair {
     #[prost(message, optional, tag = "2")]
     pub value: ::core::option::Option<Expression>,
 }
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct KeyValuePairList {
     #[prost(message, repeated, tag = "1")]
     pub kv_pairs: ::prost::alloc::vec::Vec<KeyValuePair>,
 }
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct Expression {
@@ -181,12 +199,14 @@ pub struct Expression {
 }
 #[doc = " Nested message and enum types in `Expression`."]
 pub mod expression;
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct ExpressionList {
     #[prost(message, repeated, tag = "1")]
     pub expressions: ::prost::alloc::vec::Vec<Expression>,
 }
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct StructuredAnnotation {
@@ -201,6 +221,7 @@ pub struct StructuredAnnotation {
 #[doc = " Nested message and enum types in `StructuredAnnotation`."]
 pub mod structured_annotation;
 #[doc = " Location of code relative to a given source file."]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct SourceLocation {
@@ -215,6 +236,7 @@ pub struct SourceLocation {
 }
 #[doc = " For \"safe\" enums with no underlying representation and no member integer"]
 #[doc = " values."]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct P4EnumTypeSpec {
@@ -234,6 +256,7 @@ pub mod p4_enum_type_spec;
 #[doc = " For serializable (or \"unsafe\") enums, which have an underlying type. Note"]
 #[doc = " that as per the P4_16 specification, the underlying representation can only"]
 #[doc = " be a bit<W> type."]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct P4SerializableEnumTypeSpec {
@@ -254,12 +277,14 @@ pub struct P4SerializableEnumTypeSpec {
 pub mod p4_serializable_enum_type_spec;
 #[doc = " Similar to an enum, but there is always one and only one instance per P4"]
 #[doc = " program."]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct P4ErrorTypeSpec {
     #[prost(string, repeated, tag = "1")]
     pub members: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct P4NewTypeTranslation {
@@ -277,6 +302,7 @@ pub struct P4NewTypeTranslation {
 #[doc = " Nested message and enum types in `P4NewTypeTranslation`."]
 pub mod p4_new_type_translation;
 #[doc = " New types introduced with the \"type\" keyword"]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct P4NewTypeSpec {
@@ -294,6 +320,7 @@ pub struct P4NewTypeSpec {
 }
 #[doc = " Nested message and enum types in `P4NewTypeSpec`."]
 pub mod p4_new_type_spec;
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct P4Info {
@@ -326,6 +353,7 @@ pub struct P4Info {
     #[prost(message, optional, tag = "200")]
     pub type_info: ::core::option::Option<P4TypeInfo>,
 }
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct Documentation {
@@ -339,6 +367,7 @@ pub struct Documentation {
 }
 #[doc = " Top-level package documentation describing the forwarding pipeline config"]
 #[doc = " Can be used to manage multiple P4 packages."]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct PkgInfo {
@@ -376,11 +405,13 @@ pub struct PkgInfo {
 }
 #[doc = " wrapping the enum in a message to avoid name collisions in C++, where \"enum"]
 #[doc = " values are siblings of their type, not children of it\""]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct P4Ids {}
 #[doc = " Nested message and enum types in `P4Ids`."]
 pub mod p4_ids;
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct Preamble {
@@ -420,6 +451,7 @@ pub struct Preamble {
     pub structured_annotations: ::prost::alloc::vec::Vec<StructuredAnnotation>,
 }
 #[doc = " used to group all extern instances of the same type in one message"]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct Extern {
@@ -432,6 +464,7 @@ pub struct Extern {
     #[prost(message, repeated, tag = "3")]
     pub instances: ::prost::alloc::vec::Vec<ExternInstance>,
 }
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct ExternInstance {
@@ -440,8 +473,9 @@ pub struct ExternInstance {
     #[doc = " specific to the extern type, declared in a separate vendor-specific proto"]
     #[doc = " file"]
     #[prost(message, optional, tag = "2")]
-    pub info: ::core::option::Option<::prost_types::Any>,
+    pub info: ::core::option::Option<super::super::super::google::protobuf::Any>,
 }
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct MatchField {
@@ -470,6 +504,7 @@ pub struct MatchField {
 }
 #[doc = " Nested message and enum types in `MatchField`."]
 pub mod match_field;
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct Table {
@@ -509,11 +544,12 @@ pub struct Table {
     #[doc = " architecture-specific table properties which are not part of the core P4"]
     #[doc = " language or of the PSA architecture."]
     #[prost(message, optional, tag = "100")]
-    pub other_properties: ::core::option::Option<::prost_types::Any>,
+    pub other_properties: ::core::option::Option<super::super::super::google::protobuf::Any>,
 }
 #[doc = " Nested message and enum types in `Table`."]
 pub mod table;
 #[doc = " used to list all possible actions in a Table"]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct ActionRef {
@@ -532,6 +568,7 @@ pub struct ActionRef {
 }
 #[doc = " Nested message and enum types in `ActionRef`."]
 pub mod action_ref;
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct Action {
@@ -542,6 +579,7 @@ pub struct Action {
 }
 #[doc = " Nested message and enum types in `Action`."]
 pub mod action;
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct ActionProfile {
@@ -562,6 +600,7 @@ pub struct ActionProfile {
     #[prost(int32, tag = "5")]
     pub max_group_size: i32,
 }
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct CounterSpec {
@@ -570,6 +609,7 @@ pub struct CounterSpec {
 }
 #[doc = " Nested message and enum types in `CounterSpec`."]
 pub mod counter_spec;
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct Counter {
@@ -584,6 +624,7 @@ pub struct Counter {
     #[prost(message, optional, tag = "4")]
     pub index_type_name: ::core::option::Option<P4NamedType>,
 }
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct DirectCounter {
@@ -595,6 +636,7 @@ pub struct DirectCounter {
     #[prost(uint32, tag = "3")]
     pub direct_table_id: u32,
 }
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct MeterSpec {
@@ -603,6 +645,7 @@ pub struct MeterSpec {
 }
 #[doc = " Nested message and enum types in `MeterSpec`."]
 pub mod meter_spec;
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct Meter {
@@ -617,6 +660,7 @@ pub struct Meter {
     #[prost(message, optional, tag = "4")]
     pub index_type_name: ::core::option::Option<P4NamedType>,
 }
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct DirectMeter {
@@ -634,6 +678,7 @@ pub struct DirectMeter {
 #[doc = " respectively. There can be at most one header each with these annotations."]
 #[doc = " This message captures the info contained within these special headers,"]
 #[doc = " and used in p4runtime.proto to supply the metadata."]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct ControllerPacketMetadata {
@@ -648,6 +693,7 @@ pub struct ControllerPacketMetadata {
 }
 #[doc = " Nested message and enum types in `ControllerPacketMetadata`."]
 pub mod controller_packet_metadata;
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct ValueSet {
@@ -659,6 +705,7 @@ pub struct ValueSet {
     #[prost(int32, tag = "3")]
     pub size: i32,
 }
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct Register {
@@ -672,6 +719,7 @@ pub struct Register {
     #[prost(message, optional, tag = "4")]
     pub index_type_name: ::core::option::Option<P4NamedType>,
 }
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
 pub struct Digest {

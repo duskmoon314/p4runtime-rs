@@ -8,5 +8,5 @@ pub enum Update {
     #[prost(message, tag = "3")]
     DigestAck(super::DigestListAck),
     #[prost(message, tag = "4")]
-    Other(::prost_types::Any),
+    Other(super::super::super::google::protobuf::Any),
 }

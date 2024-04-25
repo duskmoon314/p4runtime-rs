@@ -14,6 +14,19 @@ fn main() -> anyhow::Result<()> {
 
     tonic_build::configure()
         .out_dir(workspace_root.join("tmp"))
+        .type_attribute(
+            ".p4.config.v1",
+            "#[cfg_attr(feature = \"serde\", derive(serde::Serialize, serde::Deserialize))]",
+        )
+        .type_attribute(
+            ".google.protobuf",
+            "#[cfg_attr(feature = \"serde\", derive(serde::Serialize, serde::Deserialize))]",
+        )
+        .field_attribute(
+            ".google.protobuf.Any.type_url",
+            "#[cfg_attr(feature = \"serde\", serde(rename = \"@type\"))]",
+        )
+        .compile_well_known_types(true)
         .compile(
             &[
                 workspace_root.join("proto/p4runtime/proto/p4/v1/p4runtime.proto"),
@@ -29,6 +42,8 @@ fn main() -> anyhow::Result<()> {
 
     // Read in the generated code
     let google_rpc_contents = fs::read_to_string(workspace_root.join("tmp/google.rpc.rs"))?;
+    let google_protobuf_contents =
+        fs::read_to_string(workspace_root.join("tmp/google.protobuf.rs"))?;
     let p4_v1_contents = fs::read_to_string(workspace_root.join("tmp/p4.v1.rs"))?;
     let p4_config_v1_contents = fs::read_to_string(workspace_root.join("tmp/p4.config.v1.rs"))?;
 
@@ -39,6 +54,10 @@ fn main() -> anyhow::Result<()> {
         pub mod google {{
             pub mod rpc {{
                 {google_rpc_contents}
+            }}
+
+            pub mod protobuf {{
+                {google_protobuf_contents}
             }}
         }}
         

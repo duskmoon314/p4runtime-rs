@@ -135,7 +135,7 @@ pub struct ExternEntry {
     #[prost(uint32, tag = "2")]
     pub extern_id: u32,
     #[prost(message, optional, tag = "3")]
-    pub entry: ::core::option::Option<::prost_types::Any>,
+    pub entry: ::core::option::Option<super::super::google::protobuf::Any>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
@@ -649,7 +649,7 @@ pub struct Role {
     #[doc = " scope, i.e. full pipeline access. The format of this message is"]
     #[doc = " out-of-scope of P4Runtime."]
     #[prost(message, optional, tag = "2")]
-    pub config: ::core::option::Option<::prost_types::Any>,
+    pub config: ::core::option::Option<super::super::google::protobuf::Any>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
@@ -713,7 +713,7 @@ pub struct DigestListAckError {
 pub struct StreamOtherError {
     #[doc = " Optional. The architecture-specific stream message that caused the error."]
     #[prost(message, optional, tag = "1")]
-    pub other: ::core::option::Option<::prost_types::Any>,
+    pub other: ::core::option::Option<super::super::google::protobuf::Any>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, :: prost :: Message)]
@@ -805,7 +805,7 @@ pub struct Error {
     #[doc = " Optional: Allows reporting back additional target-specific details on the"]
     #[doc = " error."]
     #[prost(message, optional, tag = "5")]
-    pub details: ::core::option::Option<::prost_types::Any>,
+    pub details: ::core::option::Option<super::super::google::protobuf::Any>,
 }
 #[doc = " ------------------------------------------------------------------------------"]
 #[allow(clippy::derive_partial_eq_without_eq)]

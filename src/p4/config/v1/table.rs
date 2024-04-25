@@ -1,5 +1,6 @@
 #[doc = " this enum can be extended in the future with other behaviors, such as"]
 #[doc = " \"HARD_EVICTION\""]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, :: prost :: Enumeration)]
 #[repr(i32)]
 pub enum IdleTimeoutBehavior {

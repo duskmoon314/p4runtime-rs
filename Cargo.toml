@@ -19,4 +19,5 @@ members = ["examples/basic", "p4runtime-client", "xtask"]
 [dependencies]
 prost = "0.12.4"
 prost-types = "0.12.4"
+serde = { version = "1.0.198", features = ["derive"], optional = true }
 tonic = "0.11.0"

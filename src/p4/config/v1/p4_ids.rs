@@ -5,6 +5,7 @@
 #[doc = " most-significant byte for each resource type. The P4 compiler must use"]
 #[doc = " these values when allocating ids for P4 objects. Other users of P4Info can"]
 #[doc = " refer to this enum to identify a resource type based on its id."]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, :: prost :: Enumeration)]
 #[repr(i32)]
 pub enum Prefix {

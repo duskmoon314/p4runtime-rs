@@ -57,5 +57,5 @@ pub enum FieldMatchType {
     #[doc = " Architecture-specific match value; it corresponds to the other_match_type"]
     #[doc = " in the P4Info MatchField message."]
     #[prost(message, tag = "100")]
-    Other(::prost_types::Any),
+    Other(super::super::super::google::protobuf::Any),
 }
