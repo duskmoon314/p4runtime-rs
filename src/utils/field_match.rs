@@ -1,6 +1,6 @@
 use crate::p4::v1 as p4v1;
 
-use super::Canonical;
+use super::canonical::Canonical;
 
 impl p4v1::field_match::Exact {
     pub fn new(value: Vec<u8>, canonical: bool) -> Self {
