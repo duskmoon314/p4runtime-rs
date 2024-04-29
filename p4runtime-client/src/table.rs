@@ -32,18 +32,33 @@ where
     U::ResponseBody: Body<Data = Bytes> + Send + 'static,
     <U::ResponseBody as Body>::Error: Into<StdError> + Send,
 {
-    pub fn new_action(&self, action_name: &str, params: Vec<Vec<u8>>) -> p4v1::Action {
+    /// Create a new action with the given name and parameters.
+    pub fn new_action(
+        &self,
+        action_name: &str,
+        params: impl Into<p4runtime::utils::action::Params>,
+    ) -> p4v1::Action {
         let action_id = self.client.as_ref().p4info().action_id(action_name);
-        let params = params
-            .iter()
-            .enumerate()
-            .map(|(i, p)| p4v1::action::Param {
-                param_id: (i + 1) as u32,
-                value: p.clone(),
-            })
-            .collect();
+        let params = params.into();
 
-        p4v1::Action { action_id, params }
+        p4v1::Action {
+            action_id,
+            params: params.into(),
+        }
+    }
+
+    /// Create a new action with the given ID and parameters.
+    pub fn new_action_with_id(
+        &self,
+        action_id: u32,
+        params: impl Into<p4runtime::utils::action::Params>,
+    ) -> p4v1::Action {
+        let params = params.into();
+
+        p4v1::Action {
+            action_id,
+            params: params.into(),
+        }
     }
 
     pub fn new_table_action(&self, action_name: &str, params: Vec<Vec<u8>>) -> p4v1::TableAction {
@@ -69,7 +84,7 @@ where
                     .client
                     .as_ref()
                     .p4info()
-                    .table_match_field_id(table_name, &name),
+                    .table_match_field_id(table_name, name),
                 field_match_type: Some(match_type.clone()),
             })
             .collect();

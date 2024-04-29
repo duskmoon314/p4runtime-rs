@@ -1,7 +1,7 @@
 use p4runtime::p4::v1 as p4v1;
 use tonic::codegen::*;
 
-use crate::{p4info::P4Info, table::TableHelper};
+use crate::{counter::CounterHelper, p4info::P4Info, register::RegisterHelper, table::TableHelper};
 
 /// Client options
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -81,7 +81,7 @@ impl<T> Client<T> {
             p4rt_client: client,
             device_id,
             election_id,
-            p4info: P4Info::new(),
+            p4info: P4Info::default(),
             role,
             options,
             stream_request_sender: None,
@@ -109,6 +109,22 @@ impl<T> Client<T> {
 
     pub fn table_mut(&mut self) -> TableHelper<&mut Self, T> {
         TableHelper::new(self)
+    }
+
+    pub fn counter(&self) -> CounterHelper<&Self, T> {
+        CounterHelper::new(self)
+    }
+
+    pub fn counter_mut(&mut self) -> CounterHelper<&mut Self, T> {
+        CounterHelper::new(self)
+    }
+
+    pub fn register(&self) -> RegisterHelper<&Self, T> {
+        RegisterHelper::new(self)
+    }
+
+    pub fn register_mut(&mut self) -> RegisterHelper<&mut Self, T> {
+        RegisterHelper::new(self)
     }
 }
 
@@ -225,7 +241,8 @@ where
         &mut self,
         entity: p4v1::Entity,
     ) -> Result<p4v1::Entity, crate::error::ReadEntitySingleError> {
-        let mut stream = self.read_entity_stream(entity).await?;
+        let mut stream: tonic::Response<tonic::codec::Streaming<p4v1::ReadResponse>> =
+            self.read_entity_stream(entity).await?;
 
         // Get entity from stream
         let mut entities: Vec<p4v1::Entity> = Vec::new();
@@ -246,7 +263,8 @@ where
         &mut self,
         entity: p4v1::Entity,
     ) -> Result<Vec<p4v1::Entity>, tonic::Status> {
-        let mut stream = self.read_entity_stream(entity).await?;
+        let mut stream: tonic::Response<tonic::codec::Streaming<p4v1::ReadResponse>> =
+            self.read_entity_stream(entity).await?;
 
         // Get entity from stream
         let mut entities: Vec<p4v1::Entity> = Vec::new();
@@ -263,7 +281,8 @@ where
         &mut self,
         entities: Vec<p4v1::Entity>,
     ) -> Result<Vec<p4v1::Entity>, tonic::Status> {
-        let mut stream = self.read_entity_stream_batch(entities).await?;
+        let mut stream: tonic::Response<tonic::codec::Streaming<p4v1::ReadResponse>> =
+            self.read_entity_stream_batch(entities).await?;
 
         // Get entity from stream
         let mut entities: Vec<p4v1::Entity> = Vec::new();

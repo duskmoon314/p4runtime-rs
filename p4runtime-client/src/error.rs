@@ -23,3 +23,12 @@ pub enum ReadEntitySingleError {
     #[error("tonic status: {0}")]
     TonicStatus(#[from] tonic::Status),
 }
+
+#[derive(Debug, thiserror::Error)]
+pub enum ReadEntitiesError {
+    #[error("tonic status: {0}")]
+    TonicStatus(#[from] tonic::Status),
+
+    #[error("Expected entity {0}, found {1}")]
+    UnexpectedEntity(String, String),
+}
